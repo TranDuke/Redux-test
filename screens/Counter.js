@@ -15,6 +15,7 @@ import {
   increaseCounter,
   decreaseCounter,
 } from '../redux/actions/counterActions';
+import { getResult } from './selectors';
 
 function Counter(props) {
   return (
@@ -45,6 +46,9 @@ function Counter(props) {
         <TouchableOpacity onPress={() => props.reduxDecreaseCounter()}>
           <Text style={styles.buttonText}>-</Text>
         </TouchableOpacity>
+      </View>
+      <View style={styles.typedContainer}>
+        <Text style={styles.typedText}>Result of 2x+3 ={`${props.result}`} with x={`${props.counter}`}</Text>
       </View>
     </SafeAreaView>
   );
@@ -101,6 +105,7 @@ const mapStateToProps = state => {
   return {
     counter: state.counterReducer.counter,
     typed: state.authReducer.typed,
+    result: getResult(state),
   };
 };
 
